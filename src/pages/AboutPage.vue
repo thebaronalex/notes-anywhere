@@ -3,7 +3,6 @@
     <div class="indigo darken-3 pa-3 text-center">
       <img src="static/img/v.png">
     </div>
-
     <v-container>
       <h3 class="my-3">About</h3>
       <p>

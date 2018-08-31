@@ -1,7 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 // import HelloWorld from '@/components/HelloWorld'
-import firebase from 'firebase'
+import firebase from 'firebase/app'
+import 'firebase/auth'
 import HomePage from '../pages/HomePage.vue'
 import AboutPage from '../pages/AboutPage.vue'
 import ExamplePage from '../pages/ExamplePage.vue'
@@ -54,16 +55,6 @@ const baseRoutes = [
     component: SignUpPage
   }
 ]
-
-// export default new Router({
-//   routes: [
-//     {
-//       path: '/',
-//       name: 'HelloWorld',
-//       component: HelloWorld
-//     }
-//   ]
-// })
 
 // const routes = baseRoutes.concat(messagesRoutes, peopleRoutes);
 const routes = baseRoutes

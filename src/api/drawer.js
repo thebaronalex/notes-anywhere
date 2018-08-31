@@ -1,12 +1,12 @@
 var _loggedInDrawer = [
-  { href: 'home', router: true, title: 'Home', icon: 'home' },
-  { href: 'about', router: true, title: 'About', icon: 'domain' },
-  { href: 'logout', router: true, title: 'Logout', icon: 'person_outline' }
+  { id: 1, href: 'home', router: true, title: 'Home', icon: 'home' },
+  { id: 2, href: 'about', router: true, title: 'About', icon: 'domain' },
+  { id: 3, href: 'logout', router: true, title: 'Logout', icon: 'person_outline' }
 ]
 
 var _loggedoutDrawer = [
-  { href: 'about', router: true, title: 'About', icon: 'domain' },
-  { href: 'login', router: true, title: 'Login', icon: 'person' }
+  { id: 1, href: 'about', router: true, title: 'About', icon: 'domain' },
+  { id: 2, href: 'login', router: true, title: 'Login', icon: 'person' }
 ]
 
 export default {

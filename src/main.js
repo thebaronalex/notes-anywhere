@@ -2,7 +2,8 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
 import colors from 'vuetify/es5/util/colors'
-import firebase from 'firebase'
+import firebase from 'firebase/app'
+import 'firebase/auth'
 import App from './App'
 import router from './router'
 import store from './store/index'
@@ -25,17 +26,8 @@ import {
   transitions
 } from 'vuetify'
 import '../node_modules/vuetify/src/stylus/app.styl'
-// import Vuetify from 'vuetify'
 
 sync(store, router)
-
-// Vue.use(Vuetify, {
-//   theme: {
-//     primary: colors.indigo.base, // #E53935
-//     secondary: colors.teal.lighten4, // #FFCDD2
-//     accent: colors.teal.accent3 // #3F51B5
-//   }
-// })
 
 Vue.use(Vuetify, {
   components: {
@@ -69,14 +61,6 @@ Vue.config.productionTip = false
 // Initialize Firebase
 let app
 const config = firebaseConfig
-// const config = {
-//   apiKey: 'AIzaSyAWWY6WvsDpHos6MjRFTZRKR4xRKK3CVhc',
-//   authDomain: 'notesanywhere-214120.firebaseapp.com',
-//   databaseURL: 'https://notesanywhere-214120.firebaseio.com',
-//   projectId: 'notesanywhere-214120',
-//   storageBucket: '',
-//   messagingSenderId: '963348436377'
-// }
 
 firebase.initializeApp(config)
 firebase.auth().onAuthStateChanged(function (user) {
@@ -91,12 +75,3 @@ firebase.auth().onAuthStateChanged(function (user) {
     })
   }
 })
-
-/* eslint-disable no-new */
-// new Vue({
-//   el: '#app',
-//   router,
-//   store,
-//   components: { App },
-//   template: '<App/>'
-// })
