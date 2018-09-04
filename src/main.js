@@ -2,12 +2,14 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
 import colors from 'vuetify/es5/util/colors'
-import firebase from 'firebase/app'
-import 'firebase/auth'
+// import firebase from 'firebase/app'
+// import 'firebase/auth'
 import App from './App'
 import router from './router'
 import store from './store/index'
-import firebaseConfig from '../firebase-config'
+import VueFire from 'vuefire'
+import { auth } from './api/firebase'
+// import firebaseConfig from '../firebase-config'
 import { sync } from 'vuex-router-sync'
 import {
   Vuetify,
@@ -29,6 +31,7 @@ import '../node_modules/vuetify/src/stylus/app.styl'
 
 sync(store, router)
 
+Vue.use(VueFire)
 Vue.use(Vuetify, {
   components: {
     VApp,
@@ -60,16 +63,21 @@ Vue.config.productionTip = false
 
 // Initialize Firebase
 let app
-const config = firebaseConfig
+// const config = firebaseConfig
 
-firebase.initializeApp(config)
-firebase.auth().onAuthStateChanged(function (user) {
+// firebase.initializeApp(config)
+
+// var usersRef = firebase.database().ref('users')
+
+// firebase.auth()
+auth.onAuthStateChanged(function (user) {
   if (!app) {
     /* eslint-disable no-new */
     app = new Vue({
       el: '#app',
       router,
       store,
+      // firebase,
       components: { App },
       template: '<App/>'
     })

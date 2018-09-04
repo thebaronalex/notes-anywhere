@@ -38,9 +38,10 @@
 </template>
 
 <script>
-import firebase from 'firebase/app'
-import 'firebase/auth'
+// import firebase from 'firebase/app'
+// import 'firebase/auth'
 import { mapActions } from 'vuex'
+import { auth } from '../api/firebase'
 
 export default {
   data () {
@@ -57,7 +58,7 @@ export default {
   methods: {
     signIn: function () {
       if (this.$refs.form.validate()) {
-        firebase.auth().signInWithEmailAndPassword(this.email, this.password).then(
+        auth.signInWithEmailAndPassword(this.email, this.password).then(
           (user) => {
             this.login()
             this.$router.replace('home')
