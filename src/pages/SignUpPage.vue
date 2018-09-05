@@ -5,11 +5,11 @@
           <v-flex xs12 sm8 md4>
             <v-card class="elevation-2">
               <v-card-text>
-                <v-form>
+                <v-form ref="form" lazy-validation>
                   <v-text-field 
                     v-model="email"
                     :rules="emailRules"
-                    required                    
+                    required
                     prepend-icon="person"
                     name="email"
                     label="Email"
@@ -36,6 +36,7 @@
                   ></v-text-field>
                 </v-form>
                 <div v-if="signUpError">{{ signUpError }}</div>
+                <div v-if="loginError">{{ signUpError }}</div>
               </v-card-text>
               <v-card-actions>
                 <v-spacer></v-spacer>
@@ -49,13 +50,13 @@
 </template>
 
 <script>
-import firebase from 'firebase/app'
-import 'firebase/auth'
+import { auth } from '../api/firebase'
 
 export default {
   data () {
     return {
       signUpError: '',
+      loginError: '',
       email: '',
       password: '',
       repeatPassword: '',
@@ -71,9 +72,20 @@ export default {
   methods: {
     signUp: function () {
       if (this.$refs.form.validate()) {
-        firebase.auth().createUserWithEmailAndPassword(this.email, this.password).then(
+        auth.createUserWithEmailAndPassword(this.email, this.password).then(
           (user) => {
-            this.$router.replace('notes')
+            // this.$router.replace('notes')
+
+            auth.signInWithEmailAndPassword(this.email, this.password).then(
+              (user) => {
+                // this.login()  TODO : hook this up, maybe find a better way of doing it that importing the vuex state
+                this.$router.replace('home')
+              },
+              (err) => {
+                // this.logout()  TODO : hook this up, maybe find a better way of doing it that importing the vuex state
+                this.loginError = err.message
+              }
+            )
           },
           (err) => {
             this.signUpError = err.message

@@ -1,16 +1,11 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-// import HelloWorld from '@/components/HelloWorld'
-// import firebase from 'firebase/app'
-// import 'firebase/auth'
-
-import { auth } from '../api/firebase'
 import HomePage from '../pages/HomePage.vue'
 import AboutPage from '../pages/AboutPage.vue'
-import ExamplePage from '../pages/ExamplePage.vue'
 import LoginPage from '../pages/LoginPage.vue'
 import SignUpPage from '../pages/SignUpPage.vue'
 import LogoutPage from '../pages/LogoutPage.vue'
+import { auth } from '../api/firebase'
 
 Vue.use(Router)
 
@@ -35,11 +30,6 @@ const baseRoutes = [
     path: '/about',
     name: 'about',
     component: AboutPage
-  },
-  {
-    path: '/examples',
-    name: 'examples',
-    component: ExamplePage
   },
   {
     path: '/login',
@@ -67,14 +57,6 @@ const router = new Router({
 router.beforeEach((to, from, next) => {
   let currentUser = auth.currentUser
   let requiresAuth = to.matched.some(record => record.meta.requiresAuth)
-
-  if (currentUser) {
-    console.log(currentUser.email)
-  } else {
-    console.log('no user')
-  }
-
-  // console.log(to.name)
 
   if (requiresAuth && !currentUser) next('login')
   else next()

@@ -48,11 +48,42 @@
                   <h3>
                     {{note.title}}
                   </h3>
-                  The Woodman set to work at once, and so sharp was his axe that the tree was soon chopped nearly through.
+                  <p>
+                    {{note.text}}
+                  </p>
                 </v-card-text>
               </v-card>
             </v-flex>
           </v-layout>
+        </v-container>
+      </v-flex>
+    </v-layout>
+
+    <v-layout>
+      <v-flex >
+        <v-container fluid grid-list-md>
+          <v-card class="elevation-2">
+            <v-card-text>
+              <v-form ref="form" lazy-validation>
+              <v-text-field
+                v-model="noteTitle"
+                name="noteTitle"
+                label="Title"
+                type="text"
+              ></v-text-field>
+              <v-text-field
+                v-model="noteText"
+                name="noteText"
+                label="Text"
+                type="text"
+              ></v-text-field>
+              </v-form>
+            </v-card-text>
+            <v-card-actions>
+              <v-spacer></v-spacer>
+              <v-btn @click="addNote" color="primary">Add</v-btn>
+            </v-card-actions>
+          </v-card>
         </v-container>
       </v-flex>
     </v-layout>
@@ -73,17 +104,51 @@
 </template>
 
 <script>
-import { db } from '../api/firebase'
+import { auth, db } from '../api/firebase'
+
+var today = new Date()
+today = today.getDate() + '/' + (today.getMonth() + 1) + '/' + today.getFullYear()
 
 export default {
+  beforeCreate: function () {
+    auth.onAuthStateChanged((user) => {
+      if (user) {
+        console.log(user.uid)
+        this.user = user
+        this.uid = user.uid
+        this.$bindAsArray('notes', db.ref(`notes/${user.uid}`))
+      }
+    })
+  },
   data () {
     return {
-      notes: {}
+      notes: {},
+      noteTitle: '',
+      noteText: ''
     }
   },
   mounted () {
+  //   updateUserName(user, newName) {
+  //     this.$firebaseRefs.users.child(user['.key']).child('name').set(newName);
+  //   }
+  // },
+  // methods: {
+  //   addNote () {
+  //     this.$firebaseRefs.users.push({name: 'Tom Bombadil'})
+  //   }
   },
   methods: {
+    addNote () {
+    //   this.$firebaseRefs.notes.set({
+    //     id: auth.currentUser.uid
+    //   })
+      this.$firebaseRefs.notes.push({
+        // uid: auth.currentUser.uid,
+        createdDate: today,
+        title: this.noteTitle,
+        text: this.noteText
+      })
+    }
   },
   computed: {
     binding () {
@@ -93,12 +158,13 @@ export default {
     }
   },
   firebase: {
+
     notes: {
-      source: db.ref('notes')
+      source: db.ref('notes/' + this.uid), // + auth.currentUser.uid + '/')
       // Optional, allows you to handle any errors.
-      // cancelCallback(err) {
-      //   console.error(err);
-      // }
+      cancelCallback (err) {
+        console.error(err)
+      }
     }
   }
 }
