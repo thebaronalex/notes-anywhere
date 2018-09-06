@@ -21,7 +21,7 @@ firebaseApp.auth().onAuthStateChanged(function (user) {
     // var userName = user.isAnonymous
     userRef = user
 
-    console.log(userRef)
+    // console.log(userRef)
 
     // var useridRef = userRef.child(firebaseApp.userid)
 

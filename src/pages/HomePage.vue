@@ -1,8 +1,8 @@
 <template>
   <v-container fluid class="pa-0">
-    <div class="indigo darken-3 pa-3 text-center">
+    <!-- <div class="indigo darken-3 pa-3 text-center">
       <img src="static/img/v.png">
-    </div>
+    </div> -->
     <!-- <v-container>
       <h2>My Notes</h2>
       <p>You currently have no notes. Click the + to create one.</p>
@@ -113,7 +113,7 @@ export default {
   beforeCreate: function () {
     auth.onAuthStateChanged((user) => {
       if (user) {
-        console.log(user.uid)
+        // console.log(user.uid)
         this.user = user
         this.uid = user.uid
         this.$bindAsArray('notes', db.ref(`notes/${user.uid}`))
