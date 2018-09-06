@@ -1,6 +1,8 @@
-# notes-anywhere
+# Notes Anywhere
 
-> A Vue.js project
+> A Vue.js project made with Vue2, Vuetify, Vuex, Vue Router, VueFire + Firebase (DB & Auth), and PWA
+
+> Notes anywhere is a simple app to track notes on any device.
 
 ## Build Setup
 
