@@ -1,7 +1,9 @@
 <template>
+<!--********************* v-container » v-layout » v-flex ***********************-->
+
    <v-container fluid>
-    <!--<v-layout column>
-      <v-flex > -->
+    <v-layout column>
+      <v-flex >
         <v-form>
         <v-text-field
           v-model="noteTitle"
@@ -9,18 +11,21 @@
           label="Title"
           type="text"
         ></v-text-field>
-         <!-- <v-layout align-space-around justify-center row fill-height> -->
+         <v-layout align-space-around justify-center row fill-height>
           <v-text-area
-              name="input-7-1"
+              v-model="noteText"
+              name="noteText"
               label="Note Text"
               fill-height
+              height="100%"
+              auto-size="true"
               value="The Woodman set to work at once, and so sharp was his axe that the tree was soon chopped nearly through."
               hint="Hint text"
           ></v-text-area>
         </v-form>
-        <!-- </v-layout>
+        </v-layout>
       </v-flex>
-    </v-layout>-->
+    </v-layout>
   </v-container> 
 </template>
 
@@ -47,8 +52,6 @@ export default {
       noteText: ''
     }
   },
-  mounted () {
-  },
   methods: {
     addNote () {
       this.$firebaseRefs.notes.push({
@@ -58,13 +61,13 @@ export default {
       })
     }
   },
-  computed: {
-    binding () {
-      const binding = {}
-      if (this.$vuetify.breakpoint.mdAndDown) binding.column = true
-      return binding
-    }
-  },
+  // computed: {
+  //   binding () {
+  //     const binding = {}
+  //     if (this.$vuetify.breakpoint.mdAndDown) binding.column = true
+  //     return binding
+  //   }
+  // },
   firebase: {
     notes: {
       source: db.ref('notes/' + this.uid), // + auth.currentUser.uid + '/')

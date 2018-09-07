@@ -15,11 +15,11 @@ Vue.use(Router)
 const baseRoutes = [
   {
     path: '*',
-    redirect: '/login'
+    redirect: '/notes'
   },
   {
     path: '/',
-    redirect: '/login'
+    redirect: '/notes'
   },
   // {
   //   path: '/home',

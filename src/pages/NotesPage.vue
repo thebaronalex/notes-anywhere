@@ -107,8 +107,8 @@
 <script>
 import { auth, db } from '../api/firebase'
 
-var today = new Date()
-today = today.getDate() + '/' + (today.getMonth() + 1) + '/' + today.getFullYear()
+// var today = new Date()
+// today = today.getDate() + '/' + (today.getMonth() + 1) + '/' + today.getFullYear()
 
 export default {
   beforeCreate: function () {
@@ -122,22 +122,22 @@ export default {
   },
   data () {
     return {
-      notes: {},
-      noteTitle: '',
-      noteText: ''
+      notes: {}
+      // noteTitle: '',
+      // noteText: ''
     }
   },
-  mounted () {
-  },
-  methods: {
-    addNote () {
-      this.$firebaseRefs.notes.push({
-        createdDate: today,
-        title: this.noteTitle,
-        text: this.noteText
-      })
-    }
-  },
+  // mounted () {
+  // },
+  // methods: {
+  //   addNote () {
+  //     this.$firebaseRefs.notes.push({
+  //       createdDate: today,
+  //       title: this.noteTitle,
+  //       text: this.noteText
+  //     })
+  //   }
+  // },
   computed: {
     binding () {
       const binding = {}
