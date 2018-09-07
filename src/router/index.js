@@ -1,10 +1,13 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import HomePage from '../pages/HomePage.vue'
+// import HomePage from '../pages/HomePage.vue'
 import AboutPage from '../pages/AboutPage.vue'
 import LoginPage from '../pages/LoginPage.vue'
-import SignUpPage from '../pages/SignUpPage.vue'
 import LogoutPage from '../pages/LogoutPage.vue'
+import SignUpPage from '../pages/SignUpPage.vue'
+import SettingsPage from '../pages/SettingsPage.vue'
+import NotesPage from '../pages/NotesPage.vue'
+import NoteAddPage from '../pages/NoteAddPage.vue'
 import { auth } from '../api/firebase'
 
 Vue.use(Router)
@@ -18,14 +21,11 @@ const baseRoutes = [
     path: '/',
     redirect: '/login'
   },
-  {
-    path: '/home',
-    name: 'home',
-    component: HomePage,
-    meta: {
-      requiresAuth: true
-    }
-  },
+  // {
+  //   path: '/home',
+  //   name: 'home',
+  //   component: HomePage
+  // },
   {
     path: '/about',
     name: 'about',
@@ -45,6 +45,30 @@ const baseRoutes = [
     path: '/sign-up',
     name: 'sign-up',
     component: SignUpPage
+  },
+  {
+    path: '/settings',
+    name: 'settings',
+    component: SettingsPage,
+    meta: {
+      requiresAuth: true
+    }
+  },
+  {
+    path: '/notes',
+    name: 'notes',
+    component: NotesPage,
+    meta: {
+      requiresAuth: true
+    }
+  },
+  {
+    path: '/note-add',
+    name: 'note-add',
+    component: NoteAddPage,
+    meta: {
+      requiresAuth: true
+    }
   }
 ]
 

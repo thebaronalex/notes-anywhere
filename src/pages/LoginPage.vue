@@ -2,7 +2,7 @@
     <v-content>
       <v-container fluid fill-height>
         <v-layout align-center justify-center>
-          <v-flex xs12 sm8 md4>
+          <v-flex xs12 sm10 md8 lg6>
             <v-card class="elevation-2">
               <v-card-text>
                 <v-form ref="form" lazy-validation>
@@ -24,8 +24,16 @@
                     type="password"
                   ></v-text-field>
                 </v-form>
+
+                <div v-if="loginError">
+                  <span class="red--text"> {{ loginError }} </span>
+                  <br>
+                </div>
                 <div>If you do not have an account, you can sign up <router-link to="/sign-up">here.</router-link></div>
               </v-card-text>
+
+
+
               <v-card-actions>
                 <v-spacer></v-spacer>
                 <v-btn v-on:click="signIn" color="primary">Login</v-btn>
@@ -38,8 +46,6 @@
 </template>
 
 <script>
-// import firebase from 'firebase/app'
-// import 'firebase/auth'
 import { mapActions } from 'vuex'
 import { auth } from '../api/firebase'
 
@@ -60,11 +66,12 @@ export default {
         auth.signInWithEmailAndPassword(this.email, this.password).then(
           (user) => {
             this.login()
-            this.$router.replace('home')
+            this.$router.replace('notes')
           },
           (err) => {
             this.logout()
             this.loginError = err.message
+            this.loginErrorDetail = err.code
           }
         )
       }

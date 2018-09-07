@@ -59,7 +59,7 @@
       </v-flex>
     </v-layout>
 
-    <v-layout>
+    <!-- <v-layout>
       <v-flex >
         <v-container fluid grid-list-md>
           <v-card class="elevation-2">
@@ -86,7 +86,7 @@
           </v-card>
         </v-container>
       </v-flex>
-    </v-layout>
+    </v-layout> -->
 
     <v-fab-transition>
       <v-btn
@@ -96,6 +96,7 @@
         fixed
         bottom
         right
+        :to="{name :'note-add'}"
       >
         <v-icon>add</v-icon>
       </v-btn>
@@ -145,7 +146,6 @@ export default {
     }
   },
   firebase: {
-
     notes: {
       source: db.ref('notes/' + this.uid), // + auth.currentUser.uid + '/')
       // Optional, allows you to handle any errors.

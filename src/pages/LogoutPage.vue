@@ -10,9 +10,8 @@
 </template>
 
 <script>
-import firebase from 'firebase/app'
-import 'firebase/auth'
 import { mapActions } from 'vuex'
+import { auth } from '../api/firebase'
 
 export default {
   data () {
@@ -25,7 +24,7 @@ export default {
   },
   methods: {
     signOut () {
-      firebase.auth().signOut().then(() => {
+      auth.signOut().then(() => {
         this.logout()
         this.$router.replace('login')
       })

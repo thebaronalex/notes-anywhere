@@ -36,7 +36,7 @@
                   ></v-text-field>
                 </v-form>
                 <div v-if="signUpError">{{ signUpError }}</div>
-                <div v-if="loginError">{{ signUpError }}</div>
+                <div v-if="loginError">{{ loginError }}</div>
               </v-card-text>
               <v-card-actions>
                 <v-spacer></v-spacer>
@@ -79,7 +79,7 @@ export default {
             auth.signInWithEmailAndPassword(this.email, this.password).then(
               (user) => {
                 // this.login()  TODO : hook this up, maybe find a better way of doing it that importing the vuex state
-                this.$router.replace('home')
+                this.$router.replace('notes')
               },
               (err) => {
                 // this.logout()  TODO : hook this up, maybe find a better way of doing it that importing the vuex state
