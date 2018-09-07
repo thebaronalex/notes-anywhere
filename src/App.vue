@@ -4,7 +4,7 @@
       persistent
       :mini-variant="miniVariant"
       :clipped="clipped"
-      v-model="drawer"
+      v-model="drawer" 
       enable-resize-watcher
       fixed
       app
