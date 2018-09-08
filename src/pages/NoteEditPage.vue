@@ -8,9 +8,11 @@
           name="noteTitle"
           label="Title"
           type="text"
+          color="primary"
         ></v-text-field>
+
           <v-layout align-space-around justify-center row fill-height>
-            <v-text-area
+          <v-text-area
               v-model="noteText"
               color="purple"
               name="noteText"
@@ -18,12 +20,14 @@
               auto-size="true"
               value="The Woodman set to work at once, and so sharp was his axe that the tree was soon chopped nearly through."
               hint="Hint text"
-            ></v-text-area>
-          </v-layout> 
+          ></v-text-area>
+
+           </v-layout> 
+
         </v-form>
       </v-flex>
     </v-layout>
-    
+
     <v-fab-transition>
       <v-btn
         color="purple"
@@ -72,14 +76,14 @@ export default {
       this.$router.replace('notes')
     }
   }
-  // firebase: {
-  //   notes: {
-  //     source: db.ref('notes/' + this.uid), // + auth.currentUser.uid + '/')
-  //     // Optional, allows you to handle any errors.
-  //     cancelCallback (err) {
-  //       console.error(err)
-  //     }
-  //   }
-  // }
+//   firebase: {
+//     notes: {
+//       source: db.ref('notes/' + this.uid).equalTo($route.params.id, 'title'), // + auth.currentUser.uid + '/')
+//       // Optional, allows you to handle any errors.
+//       cancelCallback (err) {
+//         console.error(err)
+//       }
+//     }
+//   }
 }
 </script>

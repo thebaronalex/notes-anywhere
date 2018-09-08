@@ -8,27 +8,6 @@
       <p>You currently have no notes. Click the + to create one.</p>
     </v-container> -->
 
-
-    <!-- <v-container grid-list-xl>
-      <v-layout row wrap>
-        <v-flex>
-          <v-card dark color="primary">
-            <v-card-text>one</v-card-text>
-          </v-card>
-        </v-flex>
-        <v-flex>
-          <v-card dark color="secondary">
-            <v-card-text>two</v-card-text>
-          </v-card>
-        </v-flex>
-        <v-flex>
-          <v-card dark color="accent">
-            <v-card-text>three</v-card-text>
-          </v-card>
-        </v-flex>
-      </v-layout>
-    </v-container> -->
-
     <v-layout>
       <v-flex >
         <v-container fluid grid-list-md>
@@ -40,17 +19,24 @@
               v-for="note in notes"
               :key="note.id"
             >
-              <v-card tile>
+              <v-card 
+                class="elevation-4" 
+                tile 
+                ripple
+                pa-0 
+                :to="{name :'note-edit'}">
                 <v-card-text
                   value=""
                   height="400px"
                 >
-                  <h3>
-                    {{note.title}}
-                  </h3>
-                  <p>
-                    {{note.text}}
-                  </p>
+                  <div v-bind:class="{ noteContentSmall: isSmallBinding, noteContentLarge: !isSmallBinding }">
+                    <h3>
+                      {{note.title}}
+                    </h3>
+                    <p>
+                      <span style="white-space: pre-wrap;">{{note.text}}</span>
+                    </p>
+                  </div>
                 </v-card-text>
               </v-card>
             </v-flex>
@@ -58,35 +44,6 @@
         </v-container>
       </v-flex>
     </v-layout>
-
-    <!-- <v-layout>
-      <v-flex >
-        <v-container fluid grid-list-md>
-          <v-card class="elevation-2">
-            <v-card-text>
-              <v-form ref="form" lazy-validation>
-              <v-text-field
-                v-model="noteTitle"
-                name="noteTitle"
-                label="Title"
-                type="text"
-              ></v-text-field>
-              <v-text-field
-                v-model="noteText"
-                name="noteText"
-                label="Text"
-                type="text"
-              ></v-text-field>
-              </v-form>
-            </v-card-text>
-            <v-card-actions>
-              <v-spacer></v-spacer>
-              <v-btn @click="addNote" color="primary">Add</v-btn>
-            </v-card-actions>
-          </v-card>
-        </v-container>
-      </v-flex>
-    </v-layout> -->
 
     <v-fab-transition>
       <v-btn
@@ -107,9 +64,6 @@
 <script>
 import { auth, db } from '../api/firebase'
 
-// var today = new Date()
-// today = today.getDate() + '/' + (today.getMonth() + 1) + '/' + today.getFullYear()
-
 export default {
   beforeCreate: function () {
     auth.onAuthStateChanged((user) => {
@@ -117,42 +71,43 @@ export default {
         this.user = user
         this.uid = user.uid
         this.$bindAsArray('notes', db.ref(`notes/${user.uid}`))
+        console.log('before create onAuthStateChange NotesPage')
       }
     })
   },
   data () {
     return {
       notes: {}
-      // noteTitle: '',
-      // noteText: ''
     }
   },
-  // mounted () {
-  // },
-  // methods: {
-  //   addNote () {
-  //     this.$firebaseRefs.notes.push({
-  //       createdDate: today,
-  //       title: this.noteTitle,
-  //       text: this.noteText
-  //     })
-  //   }
-  // },
   computed: {
-    binding () {
-      const binding = {}
-      if (this.$vuetify.breakpoint.mdAndDown) binding.column = true
+    isSmallBinding () {
+      var binding
+      if (this.$vuetify.breakpoint.mdAndDown) binding = true
       return binding
     }
-  },
-  firebase: {
-    notes: {
-      source: db.ref('notes/' + this.uid), // + auth.currentUser.uid + '/')
-      // Optional, allows you to handle any errors.
-      cancelCallback (err) {
-        console.error(err)
-      }
-    }
   }
+  // firebase: {
+  //   notes: {
+  //     source: notesRef, //  db.ref('notes/' + this.auth.currentUser.uid), // this.uid), // +
+  //     // Optional, allows you to handle any errors.
+  //     cancelCallback (err) {
+  //       console.error(err)
+  //     }
+  //   }
+  // }
 }
 </script>
+
+<style>
+.noteContentSmall {
+    line-height: 1.5em;
+    height: 4.5em;       /* height is {n} times the line-height */
+    overflow: hidden;  /* prevents extra lines from being visible */
+}
+.noteContentLarge {
+    line-height: 1.5em;
+    height: 15em;       /* height is {n} times the line-height */
+    overflow: hidden;  /* prevents extra lines from being visible */
+}
+</style>
