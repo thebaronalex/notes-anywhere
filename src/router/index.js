@@ -8,6 +8,7 @@ import SignUpPage from '../pages/SignUpPage.vue'
 import SettingsPage from '../pages/SettingsPage.vue'
 import NotesPage from '../pages/NotesPage.vue'
 import NoteAddPage from '../pages/NoteAddPage.vue'
+import NoteEditPage from '../pages/NoteEditPage.vue'
 import { auth } from '../api/firebase'
 
 Vue.use(Router)
@@ -69,6 +70,14 @@ const baseRoutes = [
     meta: {
       requiresAuth: true
     }
+  },
+  {
+    path: '/note-edit/:id',
+    name: 'note-edit',
+    component: NoteEditPage,
+    meta: {
+      requiresAuth: true
+    }
   }
 ]
 
@@ -82,7 +91,14 @@ router.beforeEach((to, from, next) => {
   let currentUser = auth.currentUser
   let requiresAuth = to.matched.some(record => record.meta.requiresAuth)
 
+  // ****************** Debug Routes *************************
+  // console.log(to.path)
+  // if (requiresAuth) console.log('requiresAuth: True')
+  // if (currentUser) console.log('currentUser: True')
+  // **********************************************************
+
   if (requiresAuth && !currentUser) next('login')
+  else if (currentUser && to.name === 'login') next('notes')
   else next()
 })
 
