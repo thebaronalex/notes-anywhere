@@ -4,7 +4,7 @@
         <v-layout align-center justify-center>
           <v-flex xs12 sm10 md8 lg6>
             <v-card class="elevation-2">
-              <v-card-text>
+              <v-card-text @keyup.enter="signIn">
                 <v-form ref="form" lazy-validation>
                   <v-text-field
                     v-model="email"
@@ -31,8 +31,6 @@
                 </div>
                 <div>If you do not have an account, you can sign up <router-link to="/sign-up">here.</router-link></div>
               </v-card-text>
-
-
 
               <v-card-actions>
                 <v-spacer></v-spacer>

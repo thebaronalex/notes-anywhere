@@ -2,9 +2,9 @@
     <v-content>
       <v-container fluid fill-height>
         <v-layout align-center justify-center>
-          <v-flex xs12 sm8 md4>
+          <v-flex xs12 sm10 md8 lg6>
             <v-card class="elevation-2">
-              <v-card-text>
+              <v-card-text @keyup.enter="signIn">
                 <v-form ref="form" lazy-validation>
                   <v-text-field 
                     v-model="email"
@@ -35,8 +35,15 @@
                     type="password"
                   ></v-text-field>
                 </v-form>
-                <div v-if="signUpError">{{ signUpError }}</div>
-                <div v-if="loginError">{{ loginError }}</div>
+                <br>
+                <div v-if="signUpError">
+                  <span class="red--text"> {{ signUpError }} </span>
+                </div>
+
+                <div v-if="loginError">
+                  <span class="red--text"> {{ loginError }} </span>
+                </div>
+
               </v-card-text>
               <v-card-actions>
                 <v-spacer></v-spacer>
@@ -91,6 +98,9 @@ export default {
             this.signUpError = err.message
           }
         )
+      } else {
+        this.signUpError = ''
+        this.loginError = ''
       }
     }
   }
