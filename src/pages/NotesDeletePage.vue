@@ -33,7 +33,7 @@
                 <v-card-text
                   value=""
                   height="400px"
-                  @click="noteSelect(checkboxes[index])"
+                  @click="noteSelect(checkboxes[index], note)"
                 >
 
                   <v-layout align-center>
@@ -78,15 +78,15 @@
 
     <v-fab-transition>
       <v-btn
-        color="purple"
+        color="red"
         dark
         fab
         fixed
         bottom
         right
-        :to="{name :'note-add'}"
+        @click="deleteNotes"
       >
-        <v-icon>add</v-icon>
+        <v-icon>remove</v-icon>
       </v-btn>
     </v-fab-transition>
   </v-container>
@@ -117,7 +117,8 @@ export default {
     items () {
       this.checkboxes = this.notes.map(note => {
         return {
-          checked: false
+          checked: false,
+          note
         }
       })
       return this.notes
@@ -132,21 +133,21 @@ export default {
     }
   },
   methods: {
-    noteSelect (checkbox) {
-      // if (note.selected) {
-      //   note.selected = false
-      // } else {
-      //   note.selected = true
-      // }
-      // console.log(this.checkbox.checked)
+    noteSelect (checkbox, note) {
       if (checkbox.checked) {
         checkbox.checked = false
       } else {
         checkbox.checked = true
       }
-      console.log(checkbox.checked)
-      console.log(this.items[checkbox])
-      // console.log('---------')
+    },
+    deleteNotes () {
+      var arrayLength = this.checkboxes.length
+      for (var i = 0; i < arrayLength; i++) {
+        if (this.checkboxes[i].checked) {
+          db.ref(`notes/${this.user.uid}`).child(this.checkboxes[i].note['.key']).remove()
+        }
+      }
+      this.$router.replace('notes')
     }
   }
 }
