@@ -81,7 +81,7 @@ const baseRoutes = [
     }
   },
   {
-    path: '/note-edit/:id',
+    path: '/note-edit/:noteId',
     name: 'note-edit',
     component: NoteEditPage,
     meta: {

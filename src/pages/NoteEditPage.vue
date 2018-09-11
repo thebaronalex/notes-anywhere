@@ -56,6 +56,9 @@ export default {
       if (user) {
         this.uid = user.uid
         this.$bindAsArray('notes', db.ref(`notes/${user.uid}`))
+        //this.noteTitle = notes.child(). $route.params.id }}
+
+        //db.ref(`notes/${this.user.uid}`).child(this.checkboxes[i].note['.key']).
       }
     })
   },

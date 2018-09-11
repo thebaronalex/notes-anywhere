@@ -66,6 +66,7 @@ export default {
     addNote () {
       this.$firebaseRefs.notes.push({
         createdDate: today,
+        modifiedDate: today,
         title: this.noteTitle,
         text: this.noteText
       })

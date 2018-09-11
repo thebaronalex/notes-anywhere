@@ -30,7 +30,14 @@
                 tile 
                 ripple
                 pa-0 
-                :to="{name :'note-edit'}">
+
+                :to="{ name: 'note-edit', params: { noteId: note.id }}"
+                >
+                <!-- 
+                :to="{ name :'note-edit'}"
+                :to="{ name :'note-edit', params: {note.id}}" 
+                -->
+
                 <v-card-text
                   value=""
                   height="400px"
@@ -49,7 +56,19 @@
                     </div>
                   <!-- </v-layout> -->
                 </v-card-text>
-              </v-card>
+              <v-divider light></v-divider>
+              <v-card-actions class="pa-3">
+                Created {{ note.createdDate }} \\ Modified {{ note.modifiedDate }}
+                <!-- <v-spacer></v-spacer>
+                <v-icon>star_border</v-icon>
+                <v-icon>star_border</v-icon>
+                <v-icon>star_border</v-icon>
+                <v-icon>star_border</v-icon>
+                <v-icon>star_border</v-icon> -->
+              </v-card-actions>
+            </v-card>
+              <!-- </v-card> -->
+
             </v-flex>
           </v-layout>
         </v-container>
@@ -108,7 +127,7 @@ export default {
 <style>
 .noteContentSmall {
     line-height: 1.5em;
-    height: 4.5em;       /* height is {n} times the line-height */
+    height: 6em;       /* height is {n} times the line-height */
     overflow: hidden;  /* prevents extra lines from being visible */
 }
 .noteContentLarge {
