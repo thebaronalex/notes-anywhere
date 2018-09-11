@@ -22,22 +22,22 @@
               xs12
               md6
               lg3
-              v-for="note in notes"
+              v-for="(note, index) in items" 
               :key="note.id"
             >
-              <v-card 
+              <v-card
                 class="elevation-4" 
                 tile 
                 ripple
-                pa-0 
-                :to="{name :'note-edit'}">
+                pa-0 >
                 <v-card-text
                   value=""
                   height="400px"
+                  @click="noteSelect(checkboxes[index])"
                 >
 
-                  <!-- <v-layout align-center>
-                    <v-checkbox v-model="note.selected" hide-details class="shrink mr-2"></v-checkbox> -->
+                  <v-layout align-center>
+                    <v-checkbox @click.prevent hide-details :key="note.id" v-model="checkboxes[index].checked" class="shrink mr-2"> </v-checkbox>
 
                     <div v-bind:class="{ noteContentSmall: isSmallBinding, noteContentLarge: !isSmallBinding }">
                       <h3>
@@ -47,7 +47,27 @@
                         <span style="white-space: pre-wrap;">{{note.text}}</span>
                       </p>
                     </div>
-                  <!-- </v-layout> -->
+                  </v-layout>
+
+
+
+                  <!-- <v-layout align-center> -->
+                    <!-- <v-checkbox :key="note.id" v-model="note.selected" class="shrink mr-2"></v-checkbox> -->
+
+                  <!-- <v-checkbox disabled :key="note.id" :label="note.title" :value="note.id" v-model="checkboxes[index].checked">
+      
+
+                    <div v-bind:class="{ noteContentSmall: isSmallBinding, noteContentLarge: !isSmallBinding }">
+                      <h3>
+                        {{note.title}}
+                      </h3>
+                      <p>
+                        <span style="white-space: pre-wrap;">{{note.text}}</span>
+                      </p>
+                    </div>
+
+                  </v-checkbox> -->
+
                 </v-card-text>
               </v-card>
             </v-flex>
@@ -89,10 +109,19 @@ export default {
   data () {
     return {
       user: {},
-      notes: {}
+      notes: [],
+      checkboxes: []
     }
   },
   computed: {
+    items () {
+      this.checkboxes = this.notes.map(note => {
+        return {
+          checked: false
+        }
+      })
+      return this.notes
+    },
     isSmallBinding () {
       var binding
       if (this.$vuetify.breakpoint.mdAndDown) binding = true
@@ -100,6 +129,24 @@ export default {
     },
     notesExist () {
       return (this.notes.length === 0) && (!this.user)
+    }
+  },
+  methods: {
+    noteSelect (checkbox) {
+      // if (note.selected) {
+      //   note.selected = false
+      // } else {
+      //   note.selected = true
+      // }
+      // console.log(this.checkbox.checked)
+      if (checkbox.checked) {
+        checkbox.checked = false
+      } else {
+        checkbox.checked = true
+      }
+      console.log(checkbox.checked)
+      console.log(this.items[checkbox])
+      // console.log('---------')
     }
   }
 }

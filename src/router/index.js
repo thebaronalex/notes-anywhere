@@ -7,6 +7,7 @@ import LogoutPage from '../pages/LogoutPage.vue'
 import SignUpPage from '../pages/SignUpPage.vue'
 import SettingsPage from '../pages/SettingsPage.vue'
 import NotesPage from '../pages/NotesPage.vue'
+import NotesDeletePage from '../pages/NotesDeletePage.vue'
 import NoteAddPage from '../pages/NoteAddPage.vue'
 import NoteEditPage from '../pages/NoteEditPage.vue'
 import { auth } from '../api/firebase'
@@ -59,6 +60,14 @@ const baseRoutes = [
     path: '/notes',
     name: 'notes',
     component: NotesPage,
+    meta: {
+      requiresAuth: true
+    }
+  },
+  {
+    path: '/notes-delete',
+    name: 'notes-delete',
+    component: NotesDeletePage,
     meta: {
       requiresAuth: true
     }
