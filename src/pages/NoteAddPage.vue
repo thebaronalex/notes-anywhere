@@ -12,12 +12,13 @@
           <v-layout align-space-around justify-center row fill-height>
             <v-text-area
               v-model="noteText"
-              color="purple"
+              color="secondary"
               name="noteText"
               label="Note Text"
-              auto-size="true"
+              auto-grow="true"
               value=""
               hint="Hint text"
+              rows="15"
             ></v-text-area>
           </v-layout> 
         </v-form>

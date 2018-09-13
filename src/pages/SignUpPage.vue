@@ -57,6 +57,7 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 import { auth } from '../api/firebase'
 
 export default {
@@ -85,11 +86,11 @@ export default {
 
             auth.signInWithEmailAndPassword(this.email, this.password).then(
               (user) => {
-                // this.login()  TODO : hook this up, maybe find a better way of doing it that importing the vuex state
+                this.login() // TODO : hook this up, maybe find a better way of doing it that importing the vuex state
                 this.$router.replace('notes')
               },
               (err) => {
-                // this.logout()  TODO : hook this up, maybe find a better way of doing it that importing the vuex state
+                this.logout() // TODO : hook this up, maybe find a better way of doing it that importing the vuex state
                 this.loginError = err.message
               }
             )
@@ -102,7 +103,11 @@ export default {
         this.signUpError = ''
         this.loginError = ''
       }
-    }
+    },
+    ...mapActions([
+      'login',
+      'logout'
+    ])
   }
 }
 </script>

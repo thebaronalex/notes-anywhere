@@ -29,15 +29,24 @@
                 class="elevation-4" 
                 tile 
                 ripple
-                pa-0 >
+                pa-0
+
+              >
                 <v-card-text
                   value=""
                   height="400px"
                   @click="noteSelect(checkboxes[index], note)"
+                  class="pb-2"
                 >
-
                   <v-layout align-center>
-                    <v-checkbox @click.prevent hide-details :key="note.id" v-model="checkboxes[index].checked" class="shrink mr-2"> </v-checkbox>
+                    <v-checkbox 
+                      @click.prevent 
+                      hide-details 
+                      :key="note.id" 
+                      v-model="checkboxes[index].checked" 
+                      class="shrink mr-2" 
+                      color="primary"
+                    > </v-checkbox>
 
                     <div v-bind:class="{ noteContentSmall: isSmallBinding, noteContentLarge: !isSmallBinding }">
                       <h3>
@@ -48,27 +57,14 @@
                       </p>
                     </div>
                   </v-layout>
-
-
-
-                  <!-- <v-layout align-center> -->
-                    <!-- <v-checkbox :key="note.id" v-model="note.selected" class="shrink mr-2"></v-checkbox> -->
-
-                  <!-- <v-checkbox disabled :key="note.id" :label="note.title" :value="note.id" v-model="checkboxes[index].checked">
-      
-
-                    <div v-bind:class="{ noteContentSmall: isSmallBinding, noteContentLarge: !isSmallBinding }">
-                      <h3>
-                        {{note.title}}
-                      </h3>
-                      <p>
-                        <span style="white-space: pre-wrap;">{{note.text}}</span>
-                      </p>
-                    </div>
-
-                  </v-checkbox> -->
-
                 </v-card-text>
+
+                <v-divider light></v-divider>
+                <v-card-actions class="pa-1 pr-3">
+                  <v-spacer></v-spacer>
+                  Created {{ note.createdDate }} \\ Modified {{ note.modifiedDate }}
+                </v-card-actions>
+
               </v-card>
             </v-flex>
           </v-layout>
@@ -156,7 +152,7 @@ export default {
 <style>
 .noteContentSmall {
     line-height: 1.5em;
-    height: 4.5em;       /* height is {n} times the line-height */
+    height: 6em;       /* height is {n} times the line-height */
     overflow: hidden;  /* prevents extra lines from being visible */
 }
 .noteContentLarge {

@@ -26,6 +26,7 @@ import {
   VTabs,
   VMenu,
   VCheckbox,
+  VProgressCircular,
   transitions
 } from 'vuetify'
 import '../node_modules/vuetify/src/stylus/app.styl'
@@ -51,11 +52,12 @@ Vue.use(Vuetify, {
     VTabs,
     VMenu,
     VCheckbox,
+    VProgressCircular,
     transitions
   },
   theme: {
     primary: colors.indigo.base, // '#ee44aa',
-    secondary: colors.teal.lighten4, // '#424242',
+    secondary: colors.teal.base, // '#424242',
     accent: colors.teal.accent3, // '#82B1FF',
     error: '#FF5252',
     info: '#2196F3',

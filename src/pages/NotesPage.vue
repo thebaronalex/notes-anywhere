@@ -6,14 +6,17 @@
     <v-container v-if="notesExist">
       <h2>My Notes</h2>
       <p>You currently have no notes. Click the + to create one.</p>
-
+    </v-container>
+    
+    <!-- <v-container v-if="waitForFirebaseAuth">
       <v-progress-circular
         :size="70"
         :width="7"
-        color="purple"
+        color="secondary"
         indeterminate
       ></v-progress-circular>
-    </v-container>
+    </v-container> -->
+
     <v-layout>
       <v-flex >
         <v-container fluid grid-list-md>
@@ -30,47 +33,42 @@
                 tile 
                 ripple
                 pa-0 
-
                 :to="{ name: 'note-edit', params: { noteId: note['.key'] }}"
-                >
-                <!-- 
-                :to="{ name :'note-edit'}"
-                :to="{ name :'note-edit', params: {note.id}}" 
-                -->
-
+              >
                 <v-card-text
                   value=""
                   height="400px"
                   class="pb-2"
                 >
-
-                  <!-- <v-layout align-center>
-                    <v-checkbox v-model="note.selected" hide-details class="shrink mr-2"></v-checkbox> -->
-
-                    <div v-bind:class="{ noteContentSmall: isSmallBinding, noteContentLarge: !isSmallBinding }">
-                      <h3>
-                        {{note.title}}
-                      </h3>
-                      <p>
-                        <span style="white-space: pre-wrap;">{{note.text}}</span>
-                      </p>
-                    </div>
-                  <!-- </v-layout> -->
+                  <div v-bind:class="{ noteContentSmall: isSmallBinding, noteContentLarge: !isSmallBinding }">
+                    <h3>
+                      {{note.title}}
+                    </h3>
+                    <p>
+                      <span style="white-space: pre-wrap;">{{note.text}}</span>
+                    </p>
+                  </div>
                 </v-card-text>
-              <v-divider light></v-divider>
-              <v-card-actions class="pa-1 pr-3">
-                <v-spacer></v-spacer>
-                Created {{ note.createdDate }} \\ Modified {{ note.modifiedDate }}
-                <!-- 
-                <v-icon>star_border</v-icon>
-                <v-icon>star_border</v-icon>
-                <v-icon>star_border</v-icon>
-                <v-icon>star_border</v-icon>
-                <v-icon>star_border</v-icon> -->
-              </v-card-actions>
-            </v-card>
-              <!-- </v-card> -->
 
+
+
+                <v-divider light></v-divider>
+                <v-card-actions class="caption pa-0 pr-3">
+                  <!-- <spacer></spacer> -->
+                  
+                  <!-- <v-icon>star_border</v-icon> -->
+                  <v-btn
+                    icon
+                    @click.prevent="noteInfo"
+                  >
+                    <v-icon>more_vert</v-icon>
+                  </v-btn>
+
+                  <v-spacer></v-spacer>
+                  Created {{ note.createdDate }} \\ Modified {{ note.modifiedDate }}
+                </v-card-actions>
+
+              </v-card>
             </v-flex>
           </v-layout>
         </v-container>
@@ -121,7 +119,12 @@ export default {
       return binding
     },
     notesExist () {
-      return (this.notes.length === 0) && (!this.user)
+      console.log(this.notes.length)
+      console.log(this.user)
+      return (this.notes.length === 0) && (this.user)
+    },
+    waitForFirebaseAuth () {
+      return (this.notes.length > 0) && (this.user)
     }
   }
 }

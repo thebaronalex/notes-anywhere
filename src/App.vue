@@ -39,7 +39,7 @@
     >
       <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
 
-      <v-btn icon @click="goBack">
+      <v-btn v-if="showBackButton" icon @click="goBack">
         <v-icon>chevron_left</v-icon>
       </v-btn>
       
@@ -106,7 +106,15 @@ export default {
     ...mapGetters([
       'allItems',
       'userLoggedIn'
-    ])
+    ]),
+    showBackButton () {
+      var show
+      if (!this.$router.path === 'notes') show = true
+      return show
+    },
+    notesExist () {
+      return (this.notes.length === 0) && (!this.user)
+    }
   },
   methods: {
     goBack () {
