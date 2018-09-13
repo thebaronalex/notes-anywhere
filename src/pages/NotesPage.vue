@@ -31,7 +31,7 @@
                 ripple
                 pa-0 
 
-                :to="{ name: 'note-edit', params: { noteId: note.id }}"
+                :to="{ name: 'note-edit', params: { noteId: note['.key'] }}"
                 >
                 <!-- 
                 :to="{ name :'note-edit'}"
@@ -100,6 +100,7 @@ export default {
       if (user) {
         this.user = user
         this.$bindAsArray('notes', db.ref(`notes/${user.uid}`))
+        // console.log(this.notes[1]['.key'])
       } else {
         this.$router.replace('login')
       }

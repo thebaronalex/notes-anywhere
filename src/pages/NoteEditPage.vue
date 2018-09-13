@@ -55,18 +55,31 @@ export default {
     auth.onAuthStateChanged((user) => {
       if (user) {
         this.uid = user.uid
-        this.$bindAsArray('notes', db.ref(`notes/${user.uid}`))
-        //this.noteTitle = notes.child(). $route.params.id }}
+        this.noteKey = this.$route.params.noteId
+        this.$bindAsArray('note', db.ref(`notes/${user.uid}/${this.noteKey}`))
 
-        //db.ref(`notes/${this.user.uid}`).child(this.checkboxes[i].note['.key']).
+        console.log(this.note)
+        // this.noteTitle = notes.child(). $route.params.id }}
+
+        // db.ref(`note/${this.user.uid}`).child(this.checkboxes[i].note['.key']).limitToFirst;
       }
     })
   },
+  created () {
+    // this.property = 'Example property update.'
+    // console.log('propertyComputed will update, as this.property is now reactive.')
+    // console.log('test3')
+    // console.log(this.$route.params)
+    // this.noteKey = (this.$route.params.id)
+    // console.log(this.$route.params.noteId)
+    // console.log('test4')
+  },
   data () {
     return {
-      // notes: {},
-      noteTitle: '',
-      noteText: ''
+      note: {},
+      // noteTitle: '',
+      // noteText: '',
+      noteKey: ''
     }
   },
   methods: {
