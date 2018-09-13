@@ -41,6 +41,7 @@
                 <v-card-text
                   value=""
                   height="400px"
+                  class="pb-2"
                 >
 
                   <!-- <v-layout align-center>
@@ -57,9 +58,10 @@
                   <!-- </v-layout> -->
                 </v-card-text>
               <v-divider light></v-divider>
-              <v-card-actions class="pa-3">
+              <v-card-actions class="pa-1 pr-3">
+                <v-spacer></v-spacer>
                 Created {{ note.createdDate }} \\ Modified {{ note.modifiedDate }}
-                <!-- <v-spacer></v-spacer>
+                <!-- 
                 <v-icon>star_border</v-icon>
                 <v-icon>star_border</v-icon>
                 <v-icon>star_border</v-icon>

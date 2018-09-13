@@ -16,7 +16,7 @@
               name="noteText"
               label="Note Text"
               auto-size="true"
-              value="The Woodman set to work at once, and so sharp was his axe that the tree was soon chopped nearly through."
+              value=""
               hint="Hint text"
             ></v-text-area>
           </v-layout> 
@@ -57,7 +57,6 @@ export default {
   },
   data () {
     return {
-      // notes: {},
       noteTitle: '',
       noteText: ''
     }
@@ -73,14 +72,5 @@ export default {
       this.$router.replace('notes')
     }
   }
-  // firebase: {
-  //   notes: {
-  //     source: db.ref('notes/' + this.uid), // + auth.currentUser.uid + '/')
-  //     // Optional, allows you to handle any errors.
-  //     cancelCallback (err) {
-  //       console.error(err)
-  //     }
-  //   }
-  // }
 }
 </script>

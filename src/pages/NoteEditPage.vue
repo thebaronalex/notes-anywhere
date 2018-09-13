@@ -4,7 +4,7 @@
       <v-flex >
         <v-form>
         <v-text-field
-          v-model="noteTitle"
+          v-model="note.title"
           name="noteTitle"
           label="Title"
           type="text"
@@ -13,17 +13,16 @@
 
           <v-layout align-space-around justify-center row fill-height>
           <v-text-area
-              v-model="noteText"
+              v-model="note.text"
               color="purple"
               name="noteText"
               label="Note Text"
               auto-size="true"
-              value="The Woodman set to work at once, and so sharp was his axe that the tree was soon chopped nearly through."
+              value=""
               hint="Hint text"
           ></v-text-area>
 
            </v-layout> 
-
         </v-form>
       </v-flex>
     </v-layout>
@@ -36,7 +35,7 @@
         fixed
         bottom
         right
-        @click="addNote"
+        @click="updateNote"
       >
         <v-icon>check</v-icon>
       </v-btn>
@@ -54,52 +53,30 @@ export default {
   beforeCreate: function () {
     auth.onAuthStateChanged((user) => {
       if (user) {
-        this.uid = user.uid
+        this.user = user
         this.noteKey = this.$route.params.noteId
-        this.$bindAsArray('note', db.ref(`notes/${user.uid}/${this.noteKey}`))
-
-        console.log(this.note)
-        // this.noteTitle = notes.child(). $route.params.id }}
-
-        // db.ref(`note/${this.user.uid}`).child(this.checkboxes[i].note['.key']).limitToFirst;
+        this.$bindAsObject('note', db.ref(`notes/${this.user.uid}/${this.noteKey}`))
+      } else {
+        this.$router.replace('login')
       }
     })
-  },
-  created () {
-    // this.property = 'Example property update.'
-    // console.log('propertyComputed will update, as this.property is now reactive.')
-    // console.log('test3')
-    // console.log(this.$route.params)
-    // this.noteKey = (this.$route.params.id)
-    // console.log(this.$route.params.noteId)
-    // console.log('test4')
   },
   data () {
     return {
       note: {},
-      // noteTitle: '',
-      // noteText: '',
       noteKey: ''
     }
   },
   methods: {
-    addNote () {
-      this.$firebaseRefs.notes.push({
-        createdDate: today,
-        title: this.noteTitle,
-        text: this.noteText
+    updateNote () {
+      this.$firebaseRefs.note.set({
+        createdDate: this.note.createdDate,
+        modifiedDate: today,
+        title: this.note.title,
+        text: this.note.text
       })
-      this.$router.replace('notes')
+      this.$router.go(-1)
     }
   }
-//   firebase: {
-//     notes: {
-//       source: db.ref('notes/' + this.uid).equalTo($route.params.id, 'title'), // + auth.currentUser.uid + '/')
-//       // Optional, allows you to handle any errors.
-//       cancelCallback (err) {
-//         console.error(err)
-//       }
-//     }
-//   }
 }
 </script>
