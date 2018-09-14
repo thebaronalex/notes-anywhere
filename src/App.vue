@@ -64,10 +64,21 @@
           <v-list-tile :to="{name :'notes-delete'}">
             <v-list-tile-title> Delete Notes </v-list-tile-title>
           </v-list-tile>
+
+          <v-list-tile 
+            v-if="installButton"
+            @click="installApp"
+          >
+            <v-list-tile-title> Install App </v-list-tile-title>
+          </v-list-tile>
         </v-list>
       </v-menu>
 
     </v-toolbar>
+
+    <v-container v-if="connectivityStatus">
+      <p>{{ connectivityText }}</p>
+    </v-container>
 
     <!-- ************************************ -->
     <v-content>
@@ -90,10 +101,34 @@ export default {
       drawer: false, // TODO: Set to true when in desktop mode
       fixed: false,
       miniVariant: false,
-      title: 'Notes Anywhere'
+      title: 'Notes Anywhere',
+      deferredPrompt: null,
+      connectivityText: '',
+      connectivityStatus: false,
+      installButton: false
     }
   },
-
+  created () {
+    window.addEventListener('beforeinstallprompt', function (e) {
+      // Prevent Chrome 67 and earlier from automatically showing the prompt
+      console.log('before install prompt event listener')
+      e.preventDefault()
+      // e.prompt()
+      // Stash the event so it can be triggered later.
+      this.deferredPrompt = e
+      this.installButton = true
+      // this.showAddMessageToUser()
+      // console.log('addToHomescreen')
+    })
+    window.addEventListener('offline', () => {
+      this.connectivityStatus = false
+      this.connectivityText = 'You seem to be offline. Connect to see latest order status'
+    })
+    window.addEventListener('online', () => {
+      console.log('asd')
+      this.connectivityStatus = true
+    })
+  },
   mounted () {
     // TODO: find a way to use (this.userLoggedIn), this will negate the need to import firebase
     if (firebase.auth().currentUser) {
@@ -114,9 +149,20 @@ export default {
     },
     notesExist () {
       return (this.notes.length === 0) && (!this.user)
+    },
+    showInstallButton () {
+      return (this.installButton)
     }
   },
   methods: {
+    showAddMessageToUser () {
+      console.log('method "showAddMessageToUser" called')
+      // console.log(this.deferredPrompt)
+      // return (this.deferredPrompt)
+    },
+    installApp () {
+      this.deferredPrompt.prompt()
+    },
     goBack () {
       this.$router.go(-1)
     },

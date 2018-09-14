@@ -5,7 +5,7 @@ import VueFire from 'vuefire'
 import App from './App'
 import router from './router'
 import store from './store/index'
-import colors from 'vuetify/es5/util/colors'
+// import colors from 'vuetify/es5/util/colors'
 import { auth } from './api/firebase'
 import { sync } from 'vuex-router-sync'
 import {
@@ -56,9 +56,9 @@ Vue.use(Vuetify, {
     transitions
   },
   theme: {
-    primary: colors.indigo.base, // '#ee44aa',
-    secondary: colors.teal.base, // '#424242',
-    accent: colors.teal.accent3, // '#82B1FF',
+    primary: '#4DBA87', // colors.indigo.base, // '#ee44aa', // colors.indigo.base, // '#ee44aa',
+    secondary: '#424242', // colors.teal.base, // '#424242',
+    accent: '#82B1FF', // colors.teal.accent3, // '#82B1FF',
     error: '#FF5252',
     info: '#2196F3',
     success: '#4CAF50',

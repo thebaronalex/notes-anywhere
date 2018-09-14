@@ -7,7 +7,7 @@
       <h2>My Notes</h2>
       <p>You currently have no notes. Click the + to create one.</p>
     </v-container>
-    
+
     <!-- <v-container v-if="waitForFirebaseAuth">
       <v-progress-circular
         :size="70"
@@ -119,8 +119,8 @@ export default {
       return binding
     },
     notesExist () {
-      console.log(this.notes.length)
-      console.log(this.user)
+      // console.log(this.notes.length)
+      // console.log(this.user)
       return (this.notes.length === 0) && (this.user)
     },
     waitForFirebaseAuth () {
