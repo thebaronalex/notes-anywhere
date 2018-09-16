@@ -57,7 +57,7 @@ Vue.use(Vuetify, {
   },
   theme: {
     primary: '#4DBA87', // colors.indigo.base, // '#ee44aa', // colors.indigo.base, // '#ee44aa',
-    secondary: '#424242', // colors.teal.base, // '#424242',
+    secondary: '#4DBA87', // colors.teal.base, // '#424242',
     accent: '#82B1FF', // colors.teal.accent3, // '#82B1FF',
     error: '#FF5252',
     info: '#2196F3',
@@ -65,6 +65,8 @@ Vue.use(Vuetify, {
     warning: '#FFC107'
   }
 })
+
+// #63a184
 
 Vue.config.productionTip = false
 

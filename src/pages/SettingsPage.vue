@@ -1,9 +1,9 @@
 <template>
   <v-container fluid class="pa-0">
     <v-tabs
-      color="purple"
+      color="primary"
       dark
-      slider-color="purple lighten-3"
+      slider-color="primary lighten-3"
     >
       <v-tab
         v-for="i in 3"
@@ -24,7 +24,7 @@
         User Settings go here.
       </p>
       <p>
-        This app was made using Vue, Vuetify, Vuex, Vue Router, & Vue CLI. 
+        This app was made using Vue, Vuetify, Vuex, Vue Router, & Vue CLI.
       </p>
     </v-container>
   </v-container>

@@ -8,7 +8,6 @@
       <p>You currently have no notes. Click the + to create one.</p>
     </v-container> -->
 
-
     <!-- <v-container grid-list-xl>
       <v-layout row wrap>
         <v-flex>
@@ -81,7 +80,7 @@
             </v-card-text>
             <v-card-actions>
               <v-spacer></v-spacer>
-              <v-btn @click="addNote" color="primary">Add</v-btn>
+              <v-btn @click="addNote" color="secondary">Add</v-btn>
             </v-card-actions>
           </v-card>
         </v-container>

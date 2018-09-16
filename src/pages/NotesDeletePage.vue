@@ -10,7 +10,7 @@
       <v-progress-circular
         :size="70"
         :width="7"
-        color="purple"
+        color="primary"
         indeterminate
       ></v-progress-circular>
     </v-container>
@@ -60,7 +60,13 @@
                 </v-card-text>
 
                 <v-divider light></v-divider>
-                <v-card-actions class="pa-1 pr-3">
+                <v-card-actions class="caption pa-0 pr-3">
+                  <v-btn
+                    icon
+                    @click.prevent="noteInfo"
+                  >
+                    <v-icon>more_vert</v-icon>
+                  </v-btn>
                   <v-spacer></v-spacer>
                   Created {{ note.createdDate }} \\ Modified {{ note.modifiedDate }}
                 </v-card-actions>
@@ -74,7 +80,7 @@
 
     <v-fab-transition>
       <v-btn
-        color="red"
+        color="error"
         dark
         fab
         fixed

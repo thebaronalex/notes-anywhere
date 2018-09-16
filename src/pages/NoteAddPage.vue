@@ -27,7 +27,7 @@
     
     <v-fab-transition>
       <v-btn
-        color="purple"
+        color="secondary"
         dark
         fab
         fixed

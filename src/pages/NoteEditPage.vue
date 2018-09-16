@@ -14,7 +14,7 @@
           <v-layout align-space-around justify-center row fill-height>
           <v-text-area
               v-model="note.text"
-              color="purple"
+              color="secondary"
               name="noteText"
               label="Note Text"
               auto-size="true"
@@ -29,7 +29,7 @@
 
     <v-fab-transition>
       <v-btn
-        color="purple"
+        color="secondary"
         dark
         fab
         fixed

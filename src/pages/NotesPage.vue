@@ -8,15 +8,6 @@
       <p>You currently have no notes. Click the + to create one.</p>
     </v-container>
 
-    <!-- <v-container v-if="waitForFirebaseAuth">
-      <v-progress-circular
-        :size="70"
-        :width="7"
-        color="secondary"
-        indeterminate
-      ></v-progress-circular>
-    </v-container> -->
-
     <v-layout>
       <v-flex >
         <v-container fluid grid-list-md>
@@ -50,13 +41,8 @@
                   </div>
                 </v-card-text>
 
-
-
                 <v-divider light></v-divider>
                 <v-card-actions class="caption pa-0 pr-3">
-                  <!-- <spacer></spacer> -->
-                  
-                  <!-- <v-icon>star_border</v-icon> -->
                   <v-btn
                     icon
                     @click.prevent="noteInfo"
@@ -67,7 +53,6 @@
                   <v-spacer></v-spacer>
                   Created {{ note.createdDate }} \\ Modified {{ note.modifiedDate }}
                 </v-card-actions>
-
               </v-card>
             </v-flex>
           </v-layout>
@@ -77,7 +62,7 @@
 
     <v-fab-transition>
       <v-btn
-        color="purple"
+        color="secondary"
         dark
         fab
         fixed
@@ -100,7 +85,6 @@ export default {
       if (user) {
         this.user = user
         this.$bindAsArray('notes', db.ref(`notes/${user.uid}`))
-        // console.log(this.notes[1]['.key'])
       } else {
         this.$router.replace('login')
       }
@@ -119,12 +103,7 @@ export default {
       return binding
     },
     notesExist () {
-      // console.log(this.notes.length)
-      // console.log(this.user)
       return (this.notes.length === 0) && (this.user)
-    },
-    waitForFirebaseAuth () {
-      return (this.notes.length > 0) && (this.user)
     }
   }
 }
