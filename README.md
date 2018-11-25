@@ -21,3 +21,15 @@ npm run build --report
 ```
 
 For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+
+
+## Color Palatte
+
+>Tuna:          
+>#303845
+
+>Ocean Green:  
+> #4DBA87
+
+>Fiord:         
+>#435466
