@@ -84,7 +84,7 @@ export default {
     auth.onAuthStateChanged((user) => {
       if (user) {
         this.user = user
-        this.$bindAsArray('notes', db.ref(`notes/${user.uid}`))
+        this.$bindAsArray('notes', db.ref(`notes/${user.uid}`).orderByChild('modifiedDate'))
       } else {
         this.$router.replace('login')
       }

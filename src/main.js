@@ -27,6 +27,7 @@ import {
   VMenu,
   VCheckbox,
   VProgressCircular,
+  VSwitch,
   transitions
 } from 'vuetify'
 import '../node_modules/vuetify/src/stylus/app.styl'
@@ -53,12 +54,13 @@ Vue.use(Vuetify, {
     VMenu,
     VCheckbox,
     VProgressCircular,
+    VSwitch,
     transitions
   },
   theme: {
     primary: '#4DBA87', // colors.indigo.base, // '#ee44aa', // colors.indigo.base, // '#ee44aa',
-    secondary: '#4DBA87', // colors.teal.base, // '#424242',
-    accent: '#82B1FF', // colors.teal.accent3, // '#82B1FF',
+    secondary: '#435466', // '#4DBA87', // colors.teal.base, // '#424242',
+    accent: '#303845', // colors.teal.accent3, // '#82B1FF',
     error: '#FF5252',
     info: '#2196F3',
     success: '#4CAF50',

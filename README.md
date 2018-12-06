@@ -29,7 +29,7 @@ For detailed explanation on how things work, checkout the [guide](http://vuejs-t
 >#303845
 
 >Ocean Green:  
-> #4DBA87
+>#4DBA87
 
 >Fiord:         
 >#435466

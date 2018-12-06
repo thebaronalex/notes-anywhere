@@ -8,16 +8,17 @@
           name="noteTitle"
           label="Title"
           type="text"
+          color="primary"
         ></v-text-field>
+
           <v-layout align-space-around justify-center row fill-height>
             <v-text-area
               v-model="noteText"
-              color="secondary"
+              color="primary"
               name="noteText"
               label="Note Text"
-              auto-grow="true"
+              auto-size="true"
               value=""
-              hint="Hint text"
               rows="15"
             ></v-text-area>
           </v-layout> 
@@ -67,6 +68,7 @@ export default {
       this.$firebaseRefs.notes.push({
         createdDate: today,
         modifiedDate: today,
+        modifiedDateRev: -1 * today,
         title: this.noteTitle,
         text: this.noteText
       })

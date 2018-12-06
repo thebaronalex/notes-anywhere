@@ -1,5 +1,5 @@
 <template>
-  <v-app>
+  <v-app :dark="settings.darkTheme">
     <v-navigation-drawer
       persistent
       :mini-variant="miniVariant"
@@ -26,7 +26,9 @@
               <v-icon light v-html="item.icon"></v-icon>
             </v-list-tile-action>
             <v-list-tile-content>
-              <v-list-tile-title v-html="item.title"></v-list-tile-title>
+              <v-list-tile-title 
+              
+              v-html="item.title"></v-list-tile-title>
             </v-list-tile-content>
           </v-list-tile>
       </v-list>
@@ -34,7 +36,7 @@
     <v-toolbar
       app
       :clipped-left="clipped"
-      class="primary"
+      class="accent"
       dark
     >
       <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
@@ -42,8 +44,17 @@
       <v-btn v-if="showBackButton" icon @click="goBack">
         <v-icon>chevron_left</v-icon>
       </v-btn>
+      <v-btn v-else icon disabled>
+        <v-icon></v-icon>
+      </v-btn>
 
-      <v-toolbar-title v-text="title" class="font-weight-light"></v-toolbar-title>
+
+      <v-spacer></v-spacer>
+
+      <!-- <v-icon class="mx-3">fab fa-youtube</v-icon> -->
+      <img src="static/img/logo-120x120.png">
+
+      <!-- <v-toolbar-title v-text="title" class="font-weight-light"></v-toolbar-title> -->
       <v-spacer></v-spacer>
       <v-menu bottom left>
         <v-btn
@@ -92,7 +103,12 @@ export default {
       miniVariant: false,
       title: 'Notes Anywhere',
       deferredPrompt: null,
-      installButton: true
+      installButton: true,
+      // dark: false,
+      settings: {
+        modifiedDate: null,
+        darkTheme: false
+      }
     }
   },
   beforeCreate: function () {
@@ -101,6 +117,8 @@ export default {
         this.user = user
         this.username = user.email
         this.$bindAsArray('notes', db.ref(`notes/${user.uid}`))
+
+        this.$bindAsObject('settings', db.ref(`settings/${user.uid}`))
         // console.log(this.notes[1]['.key'])
       } else {
         this.$router.replace('login')

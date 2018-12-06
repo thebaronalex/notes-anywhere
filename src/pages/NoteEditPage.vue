@@ -12,17 +12,16 @@
         ></v-text-field>
 
           <v-layout align-space-around justify-center row fill-height>
-          <v-text-area
+            <v-text-area
               v-model="note.text"
-              color="secondary"
+              color="primary"
               name="noteText"
               label="Note Text"
               auto-size="true"
               value=""
-              hint="Hint text"
-          ></v-text-area>
-
-           </v-layout> 
+              rows="15"
+            ></v-text-area>
+          </v-layout> 
         </v-form>
       </v-flex>
     </v-layout>
@@ -71,7 +70,8 @@ export default {
     updateNote () {
       this.$firebaseRefs.note.set({
         createdDate: this.note.createdDate,
-        modifiedDate: today,
+        modifiedDate: -1 * today,
+        // modifiedDateRev: -1 * today, // need this field to sort desc - https://stackoverflow.com/questions/34156996/firebase-data-desc-sorting-in-android
         title: this.note.title,
         text: this.note.text
       })
