@@ -1,8 +1,8 @@
 <template>
   <v-container fluid class="pa-0">
-    <div class="primary darken-1 pa-3 text-center">
-      <img src="static/img/v.png">
-    </div>
+    <!-- <div class="accent text-center">
+      <img src="static/img/logo-120x120.png">
+    </div> -->
     <v-container>
       <h3 class="my-3">About</h3>
       <p>
