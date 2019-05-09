@@ -45,9 +45,6 @@
 <script>
 import { auth, db } from '../api/firebase'
 
-var today = new Date()
-today = today.getDate() + '/' + (today.getMonth() + 1) + '/' + today.getFullYear()
-
 export default {
   beforeCreate: function () {
     auth.onAuthStateChanged((user) => {
@@ -68,10 +65,12 @@ export default {
   },
   methods: {
     updateNote () {
+      var formattedDate = new Date()
+      formattedDate = formattedDate.toLocaleString('en-GB', { timeZone: 'UTC', hour12: 'true' })
+
       this.$firebaseRefs.note.set({
-        createdDate: this.note.createdDate,
-        modifiedDate: -1 * today,
-        // modifiedDateRev: -1 * today, // need this field to sort desc - https://stackoverflow.com/questions/34156996/firebase-data-desc-sorting-in-android
+        modifiedDate: Date.now() * -1,
+        modifiedDateFormatted: formattedDate,
         title: this.note.title,
         text: this.note.text
       })

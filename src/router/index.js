@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-// import HomePage from '../pages/HomePage.vue'
 import AboutPage from '../pages/AboutPage.vue'
 import LoginPage from '../pages/LoginPage.vue'
 import LogoutPage from '../pages/LogoutPage.vue'
@@ -23,11 +22,6 @@ const baseRoutes = [
     path: '/',
     redirect: '/notes'
   },
-  // {
-  //   path: '/home',
-  //   name: 'home',
-  //   component: HomePage
-  // },
   {
     path: '/about',
     name: 'about',

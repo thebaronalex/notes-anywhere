@@ -41,13 +41,12 @@
     >
       <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
 
-      <!-- <v-btn v-if="showBackButton" icon @click="goBack">
+      <v-btn v-if="showBackButton" icon @click="goBack">
         <v-icon>chevron_left</v-icon>
       </v-btn>
       <v-btn v-else icon disabled>
         <v-icon></v-icon>
-      </v-btn> -->
-
+      </v-btn>
 
       <v-spacer></v-spacer>
 

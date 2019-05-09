@@ -1,8 +1,5 @@
 <template>
   <v-container fluid class="pa-0">
-    <!-- <div class="accent text-center">
-      <img src="static/img/logo-120x120.png">
-    </div> -->
     <v-container>
       <h3 class="my-3">About</h3>
       <p>

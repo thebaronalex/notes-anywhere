@@ -1,8 +1,5 @@
 <template>
   <v-container fluid class="pa-0">
-    <!-- <div class="indigo darken-3 pa-3 text-center">
-      <img src="static/img/v.png">
-    </div> -->
     <v-container v-if="notesExist">
       <h2>My Notes</h2>
       <p>You currently have no notes. Click the + to create one.</p>
@@ -51,7 +48,7 @@
                   </v-btn>
 
                   <v-spacer></v-spacer>
-                  Created {{ note.createdDate }} \\ Modified {{ note.modifiedDate }}
+                  {{ note.modifiedDateFormatted }}
                 </v-card-actions>
               </v-card>
             </v-flex>

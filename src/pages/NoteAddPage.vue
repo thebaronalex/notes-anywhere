@@ -45,9 +45,6 @@
 <script>
 import { auth, db } from '../api/firebase'
 
-var today = new Date()
-today = today.getDate() + '/' + (today.getMonth() + 1) + '/' + today.getFullYear()
-
 export default {
   beforeCreate: function () {
     auth.onAuthStateChanged((user) => {
@@ -65,10 +62,12 @@ export default {
   },
   methods: {
     addNote () {
+      var formattedDate = new Date()
+      formattedDate = formattedDate.toLocaleString('en-GB', { timeZone: 'UTC', hour12: 'true' })
+
       this.$firebaseRefs.notes.push({
-        createdDate: today,
-        modifiedDate: today,
-        modifiedDateRev: -1 * today,
+        modifiedDate: Date.now() * -1,
+        modifiedDateFormatted: formattedDate,
         title: this.noteTitle,
         text: this.noteText
       })
