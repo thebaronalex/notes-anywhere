@@ -27,7 +27,17 @@
     </v-layout>
     
     <v-fab-transition>
-      <v-btn
+       <v-btn
+        color="secondary"
+        dark
+        fab
+        fixed
+        bottom
+        left
+        @click="LearnNote"
+
+        ></v-btn>
+      <v-btn>
         color="secondary"
         dark
         fab
@@ -35,9 +45,9 @@
         bottom
         right
         @click="addNote"
-      >
+        
         <v-icon>check</v-icon>
-      </v-btn>
+      ><</v-btn>
     </v-fab-transition>
   </v-container> 
 </template>
@@ -73,6 +83,7 @@ export default {
       })
       this.$router.replace('notes')
     }
+
   }
 }
 </script>

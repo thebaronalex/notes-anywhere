@@ -12,6 +12,8 @@
   },
   "dependencies": {
     "firebase": "^5.11.1",
+    "gulp": "^4.0.2",
+    "mocha": "^6.2.2",
     "vue": "^2.6.10",
     "vue-router": "^3.0.6",
     "vuefire": "^1.4.5",

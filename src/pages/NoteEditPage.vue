@@ -27,6 +27,9 @@
     </v-layout>
 
     <v-fab-transition>
+           
+        <v-icon>check</v-icon>
+      </v-btn>
       <v-btn
         color="secondary"
         dark
@@ -63,6 +66,8 @@ export default {
       noteKey: ''
     }
   },
+
+
   methods: {
     updateNote () {
       var formattedDate = new Date()
@@ -75,7 +80,20 @@ export default {
         text: this.note.text
       })
       this.$router.go(-1)
+    },
+
+    learnNote () {
+        
     }
+
+
   }
-}
+
+
+
+
+
+   }
+  
+
 </script>
